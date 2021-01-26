@@ -1,9 +1,11 @@
-import React from "react"
+import { sortBy } from "lodash"
+import React, {useState} from "react"
 import styled from "styled-components"
 import { usePathBuilder } from "./PathBuilder"
 import SidebarItem from "./SidebarItem"
 import SidebarResources from "./SidebarResources"
 import { ResourceName, ResourceView } from "./types"
+import {CheckBox} from "@material-ui/icons"
 
 type OverviewResourceSidebarProps = {
   name: string
@@ -31,8 +33,15 @@ export default function OverviewResourceSidebar(
     selected = ""
   }
 
+  const [alertsFirst, setAlertsFirst] = useState(false)
+
+  if (alertsFirst) {
+    items = sortBy(items, i => -(i.buildAlertCount + i.runtimeAlertCount))
+  }
+
   return (
     <OverviewResourceSidebarRoot>
+      <CheckBox name="alerts-first" label="Sort by Alerts" checked={alertsFirst} onChange={setAlertsFirst} />
       <SidebarResources
         items={items}
         selected={selected}

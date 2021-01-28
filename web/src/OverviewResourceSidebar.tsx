@@ -41,7 +41,8 @@ export default function OverviewResourceSidebar(
 
   return (
     <OverviewResourceSidebarRoot>
-      <CheckBox name="alerts-first" label="Sort by Alerts" checked={alertsFirst} onChange={setAlertsFirst} />
+      {/* TODO - add a component to toggle alertsFirst */}
+      {/* <CheckBox name="alerts-first" label="Sort by Alerts" checked={alertsFirst} onChange={setAlertsFirst} /> */}
       <SidebarResources
         items={items}
         selected={selected}

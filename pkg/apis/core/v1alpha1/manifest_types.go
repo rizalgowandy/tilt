@@ -52,6 +52,14 @@ type ManifestList struct {
 
 // ManifestSpec defines the desired state of Manifest
 type ManifestSpec struct {
+	Attachment string `json:"attachment"`
+
+	// +optional
+	NestedAttchment *NestedAttachment `json:"nestedAttachment"`
+}
+
+type NestedAttachment struct {
+	Attachment string `json:"attachment"`
 }
 
 var _ resource.Object = &Manifest{}
